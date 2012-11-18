@@ -1,8 +1,10 @@
 [alias]
 	# View the SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph
+	l = log --pretty=oneline -n 20 --graph --decorate
 	# View the current working tree status using the short format
-	s = status -s
+	ss = status -s
+	# View regular status
+	s = status
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
