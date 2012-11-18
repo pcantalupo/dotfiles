@@ -1,3 +1,22 @@
+#
+# my additions
+#
+
+# Windows to linux line endings
+alias trimcr="tr -d '\r'"
+
+# safe delete copy and move
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# show grep in living color
+alias grep='grep --color'
+
+#
+# original stuff below
+#
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
