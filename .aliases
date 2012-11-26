@@ -5,6 +5,9 @@
 # Windows to linux line endings
 alias trimcr="tr -d '\r'"
 
+# Remove double quotes from Excel text files
+alias trimq="tr -d '\"'"
+
 # safe delete copy and move
 alias rm='rm -i'
 alias cp='cp -i'
