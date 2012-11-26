@@ -85,3 +85,6 @@
 [user]
 	name = Paul Cantalupo
 	email = pcantalupo@gmail.com
+
+[push]
+	default = simple
