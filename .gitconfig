@@ -28,6 +28,9 @@
 	# Undo a `git push`
 	undopush = push -f origin HEAD^:master
 
+	# Merge master branch
+	mm = git merge master
+
 [apply]
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
