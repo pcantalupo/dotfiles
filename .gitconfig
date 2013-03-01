@@ -31,6 +31,9 @@
 	# Merge master branch
 	mm = merge master
 
+	# Show commit logs between HEAD and FETCH_HEAD
+	logfetch = log -p ..FETCH_HEAD
+
 [apply]
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
