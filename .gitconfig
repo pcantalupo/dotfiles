@@ -33,6 +33,7 @@
 
 	# Show commit logs between HEAD and FETCH_HEAD
 	logfetch = log -p ..FETCH_HEAD
+	showgraph = log --graph --abbrev-commit --pretty=oneline --decorate=full
 
 [apply]
 	# Detect whitespace errors when applying a patch
