@@ -1,12 +1,12 @@
 [alias]
-	# View the SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 50 --graph --decorate
+	# View the SHA, description, and history graph of the latest 50 commits
+	l = log --pretty=oneline -n 50 --graph --decorate --abbrev-commit
 	# View the current working tree status using the short format
 	ss = status -s
 	# View regular status
 	s = status
 	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 	# Pull in remote changes for the current repository and all its submodules
@@ -25,8 +25,6 @@
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 	# Interactive rebase with the given number of latest commits
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
-	# Undo a `git push`
-	undopush = push -f origin HEAD^:master
 
 	# Merge master branch
 	mm = merge master
@@ -43,13 +41,15 @@
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
-	# Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
+	# Treat spaces before tabs, lines that are indented with 8 or more spaces, and
+	# all kinds of trailing whitespace as an error
 	whitespace = space-before-tab,indent-with-non-tab,trailing-space
 
 	editor = joe
 	#pager = 
 [color]
-	# Use colors in Git commands that are capable of colored output when outputting to the terminal
+	# Use colors in Git commands that are capable of colored output when
+	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
 	ui = auto
 	# ui = always
 
@@ -69,11 +69,6 @@
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
-
-# Use `origin` as the default remote on the `master` branch in all cases
-[branch "master"]
-	remote = origin
-	merge = refs/heads/master
 
 # URL shorthands
 [url "git@github.com:"]
