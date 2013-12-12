@@ -2,6 +2,9 @@
 # my additions
 #
 
+# always use separator tab with sqlite3
+alias s3="sqlite3 -separator $'\t'"
+
 # Windows to linux line endings
 alias trimcr="tr -d '\r'"
 
