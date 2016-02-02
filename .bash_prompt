@@ -59,7 +59,8 @@ prompt_git() {
 	fi;
 }
 
-if tput setaf 1 &> /dev/null; then
+name=$(hostname);
+if tput setaf 1 &> /dev/null && [[ $name != supernova.bio.pitt.edu ]]; then
 	tput sgr0; # reset colors
 	bold=$(tput bold);
 	reset=$(tput sgr0);
