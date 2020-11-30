@@ -16,6 +16,9 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
+# open like with mac
+alias open='cygstart'
+
 # show grep in living color
 #alias grep='grep --color'
 
