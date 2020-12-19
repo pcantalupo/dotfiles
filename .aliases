@@ -17,7 +17,11 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # open like with mac
-alias open='cygstart'
+hname=$(hostname)
+if [[ $hname == "sirius" ]]; then
+  alias open='cygstart'
+  alias pulse="open /cygdrive/c/Program\ Files\ \(x86\)/Common\ Files/Pulse\ Secure/JamUI/Pulse.exe -show"
+fi
 
 # show grep in living color
 #alias grep='grep --color'
