@@ -60,7 +60,7 @@ prompt_git() {
 }
 
 name=$(hostname);
-if tput setaf 1 &> /dev/null && [[ $name != supernova.bio.pitt.edu && $name != Rigel ]]; then
+if tput setaf 1 &> /dev/null; then # && [[ $name != supernova.bio.pitt.edu && $name != Rigel ]]; then
 	echo "Running tput"
 	tput sgr0; # reset colors
 	bold=$(tput bold);
