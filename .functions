@@ -1,6 +1,7 @@
 function sshsn()    { ssh supernova.bio.pitt.edu; }
 function sshhtc()   { ssh htc.crc.pitt.edu; }
 function sshrigel() { ssh rb227-mdt.dbmi.pitt.edu; }
+function sshpollux() { ssh BS-H4TFH0P9PN78.bio.pitt.edu; }
 
 # Simple calculator
 function calc() {
