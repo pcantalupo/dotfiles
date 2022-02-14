@@ -2,6 +2,13 @@
 # my additions
 #
 
+HNAME=$(hostname)
+HTC='htc'
+if [[ "$HNAME" == *"$HTC"* ]]; then
+  alias tree="/ihome/crc/install/tree/tree-1.8.0/tree"
+  alias status='echo "Tmux"; tmux ls; echo -e "\nPOSIX Jobs"; j; echo -e "\nSLURM Jobs"; squeue -u $USER -S S -o "%7i %35j %2t %12l %8M %4C %.R %S"'
+fi
+
 # always use separator tab with sqlite3
 alias s3="sqlite3 -separator $'\t'"
 
@@ -17,8 +24,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # open like with mac
-hname=$(hostname)
-if [[ $hname == "sirius" ]]; then
+if [[ "$HNAME" == "sirius" ]]; then
   alias open='cygstart'
   alias pulse="open /cygdrive/c/Program\ Files\ \(x86\)/Common\ Files/Pulse\ Secure/JamUI/Pulse.exe -show"
 fi
@@ -61,7 +67,7 @@ alias l="ls -lF ${colorflag}"
 alias la="ls -laF ${colorflag}"
 
 # List only directories
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+alias lsd="ls -laF ${colorflag} | grep --color=never '^d'"
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
