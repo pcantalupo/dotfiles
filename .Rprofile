@@ -147,3 +147,35 @@ myRinfo = function() {
 
 }
 
+
+# simple conversion of one id (i.e. ENSEMBL) to another (i.e. SYMBOL)
+# I wrote this quickly and didn't do alot of testing/debugging but I think it is ok
+# use 'allowable' = TRUE to show the values that allowed for the FROM and TO parameters
+convertids = function (ids = c("TP53", "RB1", "FOXP3"),
+                       from = "SYMBOL", to = "ENSEMBL", species = "human",
+                       allowable = FALSE) {
+  # see ?mapIds   'multiVals' = 'first' is the default but explicitly defining it here
+  
+  allowable_msg = "Allowable values for 'from' and 'to' parameters are:"
+  if (species == "human") {
+    require(org.Hs.eg.db)
+    if (allowable == TRUE) {
+      message(allowable_msg)
+      print(columns(org.Hs.eg.db))
+      return(invisible(NULL))
+    }
+    mapIds(org.Hs.eg.db, ids, keytype=from, column=to, multiVals = "first")
+  } else if (species == "mouse") {
+    require(org.Mm.eg.db)
+    if (allowable == TRUE) {
+      message(allowable_msg)
+      print(columns(org.Hs.eg.db))
+      return(invisible(NULL))
+    }
+    mapIds(org.Mm.eg.db, ids, keytype=from, column=to, multiVals = "first")
+  }
+  else {
+    stop(paste0("Species ", species, " is not supported"))
+  }
+}
+
