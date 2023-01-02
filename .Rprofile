@@ -147,35 +147,54 @@ myRinfo = function() {
 
 }
 
+# See examples inside the function for usage
+# Use 'allowable' = TRUE to show the values that allowed for the FROM and TO parameters
+annotate = function(db, ids, idtype, columns, multiVals = "first", allowable = FALSE) 
+{
 
-# simple conversion of one id (i.e. ENSEMBL) to another (i.e. SYMBOL)
-# I wrote this quickly and didn't do alot of testing/debugging but I think it is ok
-# use 'allowable' = TRUE to show the values that allowed for the FROM and TO parameters
-convertids = function (ids = c("TP53", "RB1", "FOXP3"),
-                       from = "SYMBOL", to = "ENSEMBL", species = "human",
-                       allowable = FALSE) {
-  # see ?mapIds   'multiVals' = 'first' is the default but explicitly defining it here
-  
-  allowable_msg = "Allowable values for 'from' and 'to' parameters are:"
-  if (species == "human") {
-    require(org.Hs.eg.db)
-    if (allowable == TRUE) {
-      message(allowable_msg)
-      print(columns(org.Hs.eg.db))
-      return(invisible(NULL))
-    }
-    mapIds(org.Hs.eg.db, ids, keytype=from, column=to, multiVals = "first")
-  } else if (species == "mouse") {
-    require(org.Mm.eg.db)
-    if (allowable == TRUE) {
-      message(allowable_msg)
-      print(columns(org.Hs.eg.db))
-      return(invisible(NULL))
-    }
-    mapIds(org.Mm.eg.db, ids, keytype=from, column=to, multiVals = "first")
+  if (FALSE) {  # Examples showing the usage of different databases with 'annotate'
+    # Using Org.Hs.eg.db
+    keytypes(org.Hs.eg.db)
+    columns(org.Hs.eg.db)
+    ids = c("TP53", "RB1", "GAGE2C") # (ENSG00000236362 returns 6 GAGE symbols)
+    annotate(org.Hs.eg.db, ids = ids, idtype = "SYMBOL",
+             columns = c("ENSEMBL","GENENAME","GENETYPE"))
+    
+    # Using AnnotationHub Ensembl Db 
+    # see https://www.bioconductor.org/packages/release/bioc/vignettes/ensembldb/inst/doc/ensembldb.html#101_Getting_EnsDb_databases
+    ah <- AnnotationHub::AnnotationHub()  # query(ah, c("EnsDb", "Homo sapiens"))
+    edb <- ah[["AH109336"]]   # Ensembl 108
+    keytypes(edb)
+    columns(edb)
+    ids = c("ENSG00000141510", "ENSG00000139687", "ENSG00000236362")
+    annotate(edb, ids = ids, idtype = "GENEID",
+             columns = c("SYMBOL","DESCRIPTION","GENEBIOTYPE"))
+    
+    # Annotate SCE object (human ENSEMBL ids)
+    sce = scRNAseq::LawlorPancreasData()
+    rowData(sce)
+    head(rownames(sce),n=2)
+    res = annotate(edb, ids = rownames(sce), idtype = "GENEID", columns = c("SYMBOL","DESCRIPTION","GENEBIOTYPE"))
+    head(res,n=2);dim(res)
+    identical(rownames(sce), rownames(res))
+    rowData(sce) = res
+    
   }
-  else {
-    stop(paste0("Species ", species, " is not supported"))
+
+  allowable_msg = "Allowable values for 'idtype' and 'columns' parameters are:"
+  if (allowable == TRUE) {
+    message(allowable_msg)
+    print(columns(db))
+    return(invisible(NULL))
+  }
+  anno = sapply(columns, \(c) {
+    mapIds(db, keys = ids, keytype = idtype, column = c, multiVals=multiVals)}
+  )
+  return(as.data.frame(anno))
+    
+  # Another method is to Annotate with 'select'. Need to remove duplicates manually with 'match'. This creates data.frame with 4 columns ENSEMBL, SYMBOL, GENENAME, GENETYPE
+  if (FALSE) {
+    raw = select(org.Hs.eg.db, keys = ids, keytype = idtype, columns = columns)
+    raw[match(ids, raw$ENSEMBL),]   # gets first match (used by A.Lun https://github.com/Bioconductor/AnnotationDbi/issues/2)
   }
 }
-
