@@ -6,7 +6,10 @@ HNAME=$(hostname)
 HTC='htc'
 if [[ "$HNAME" == *"$HTC"* ]]; then
   alias tree="/ihome/crc/install/tree/tree-1.8.0/tree"
-  alias status='echo "Tmux"; tmux ls; echo -e "\nPOSIX Jobs"; j; echo -e "\nSLURM Jobs"; squeue -u $USER -S S -o "%7i %35j %2t %12l %8M %4C %.R %S"'
+fi
+
+if [[ "$HNAME" == *"$HTC"* || "$HNAME" == *bridges2* ]]; then
+  alias status='echo "Tmux"; tmux ls; echo -e "\nPOSIX Jobs"; j; echo -e "\nSLURM Jobs"; squeue -u $USER -S S -o "%8i %75j %2t %12l %8M %4C %.R %S"'
 fi
 
 if [[ "$HNAME" == "Rigel" ]]; then
