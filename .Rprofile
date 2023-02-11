@@ -113,6 +113,17 @@ getHomologousSymbols = function(symbols = c("TP53", "RB1", "FOXP3"), current = "
   return(toReturn)
 }
 
+check = function() {
+  p = sort(c("batchelor", "BiocParallel", "celldex", "DelayedArray", "dittoSeq", "dplyr", "DropletUtils", "foobar", "ggplot2", "gridExtra", "monocle3", "PCAtools", "pheatmap", "rlang", "scater", "scran", "Seurat", "SingleR"))
+  for (mypackage in p) {
+    v = suppressWarnings(packageDescription(mypackage, fields = "Version"))
+    if(!is.na(v)) {
+      print(paste0(mypackage, ": ", v))
+    } else {
+      print(paste0(mypackage, ": NOT INSTALLED"))
+    }
+  }
+}
 
 myRinfo = function() {
 
@@ -138,10 +149,11 @@ myRinfo = function() {
   }
   
   message("\nVersion of select packages")
-  pkgs = utils::installed.packages()
-  p = c("SingleR", "celldex", "Seurat", "monocle3", "scater", "scran","Azimuth")
-  print(pkgs[rownames(pkgs) %in% p,"Version", drop = FALSE])
-  
+#  pkgs = utils::installed.packages()
+#  p = c("SingleR", "celldex", "Seurat", "monocle3", "scater", "scran","Azimuth")
+#  print(pkgs[rownames(pkgs) %in% p,"Version", drop = FALSE])
+  check()
+
   message("\nR version:")
   print(R.version.string)
 
