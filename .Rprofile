@@ -199,7 +199,7 @@ annotate = function(db, ids, idtype, columns, multiVals = "first", allowable = F
     print(columns(db))
     return(invisible(NULL))
   }
-  anno = sapply(columns, \(c) {
+  anno = sapply(columns, function (c) {
     mapIds(db, keys = ids, keytype = idtype, column = c, multiVals=multiVals)}
   )
   return(as.data.frame(anno))
