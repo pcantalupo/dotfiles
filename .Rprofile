@@ -113,7 +113,7 @@ getHomologousSymbols = function(symbols = c("TP53", "RB1", "FOXP3"), current = "
   return(toReturn)
 }
 
-check = function() {
+check_version_packages = function() {
   p = sort(c("batchelor", "BiocParallel", "celldex", "DelayedArray", "dittoSeq", "dplyr", "DropletUtils", "foobar", "ggplot2", "gridExtra", "monocle3", "PCAtools", "pheatmap", "rlang", "scater", "scran", "Seurat", "SingleR"))
   for (mypackage in p) {
     v = suppressWarnings(packageDescription(mypackage, fields = "Version"))
@@ -152,12 +152,25 @@ myRinfo = function() {
 #  pkgs = utils::installed.packages()
 #  p = c("SingleR", "celldex", "Seurat", "monocle3", "scater", "scran","Azimuth")
 #  print(pkgs[rownames(pkgs) %in% p,"Version", drop = FALSE])
-  check()
+  check_version_packages()
 
   message("\nR version:")
   print(R.version.string)
 
 }
+
+# peek(mtcars)  # show first 5 rows and 5 cols by default
+# peek(letters) # show first 5 elements of the letters vector
+peek = function(data, r = 5, c = 5) {
+  if (is.null(nrow(data))) {
+    print(head(data, r))
+  } else {
+    if (nrow(data) < r) { r = nrow(data) }
+    if (ncol(data) < c) { c = ncol(data) }
+    print(data[1:r,1:c])
+  }
+}
+
 
 # See examples inside the function for usage
 # Use 'allowable' = TRUE to show the values that allowed for the FROM and TO parameters
