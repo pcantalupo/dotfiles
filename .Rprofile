@@ -114,7 +114,7 @@ getHomologousSymbols = function(symbols = c("TP53", "RB1", "FOXP3"), current = "
 }
 
 check_version_packages = function() {
-  p = sort(c("batchelor", "BiocParallel", "celldex", "DelayedArray", "dittoSeq", "dplyr", "DropletUtils", "foobar", "ggplot2", "gridExtra", "monocle3", "PCAtools", "pheatmap", "rlang", "scater", "scran", "Seurat", "SingleR"))
+  p = sort(c("batchelor", "bluster", "BiocParallel", "celldex", "DelayedArray", "dittoSeq", "dplyr", "DropletUtils", "foobar", "ggplot2", "gridExtra", "Matrix", "monocle3", "PCAtools", "pheatmap", "rlang", "scater", "scran", "Seurat", "SingleR"))
   for (mypackage in p) {
     v = suppressWarnings(packageDescription(mypackage, fields = "Version"))
     if(!is.na(v)) {
