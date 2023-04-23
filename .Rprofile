@@ -1,3 +1,6 @@
+source("https://raw.githubusercontent.com/pcantalupo/sct/master/R/sct.R")
+
+
 search_for_function = function (query, lib) {
   package = paste0("package:", lib)
   pacman::p_load(char = lib)
