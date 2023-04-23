@@ -1,4 +1,4 @@
-source("https://raw.githubusercontent.com/pcantalupo/sct/master/R/sct.R")
+utils::capture.output(source("https://raw.githubusercontent.com/pcantalupo/sct/master/R/sct.R"), file="NUL")
 
 
 search_for_function = function (query, lib) {
