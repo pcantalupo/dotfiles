@@ -3,6 +3,13 @@ function sshhtc()   { ssh htc.crc.pitt.edu; }
 function sshrigel() { ssh rb227-mdt.dbmi.pitt.edu; }
 function sshpollux() { ssh BS-H4TFH0P9PN78.bio.pitt.edu; }
 
+function showprocesses() {
+  echo -e "\n${PURPLE}Running processes${NC}"
+  echo -e "${GREEN}tmux${NC}" && tmux ls && echo
+  echo -e "${GREEN}jobs${NC}" && j && echo
+  echo -e "${GREEN}squeue${NC}" && squeue -u $USER -S S -o "%8i %65j %2t %12l %8M %4C %.R %S" --cluster htc,gpu
+}
+
 # Simple calculator
 function calc() {
 	local result="";
