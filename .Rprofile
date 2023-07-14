@@ -176,15 +176,15 @@ peek = function(data, r = 5, c = 5) {
 
 # See examples inside the function for usage
 # Use 'allowable' = TRUE to show the values that allowed for the FROM and TO parameters
-annotate = function(db, ids, idtype, columns, multiVals = "first", allowable = FALSE) 
+Annotate = function(db, ids, idtype, columns, multiVals = "first", allowable = FALSE) 
 {
 
-  if (FALSE) {  # Examples showing the usage of different databases with 'annotate'
+  if (FALSE) {  # Examples showing the usage of different databases with 'Annotate'
     # Using Org.Hs.eg.db
     keytypes(org.Hs.eg.db)
     columns(org.Hs.eg.db)
     ids = c("TP53", "RB1", "GAGE2C") # (ENSG00000236362 returns 6 GAGE symbols)
-    annotate(org.Hs.eg.db, ids = ids, idtype = "SYMBOL",
+    Annotate(org.Hs.eg.db, ids = ids, idtype = "SYMBOL",
              columns = c("ENSEMBL","GENENAME","GENETYPE"))
     
     # Using AnnotationHub Ensembl Db 
@@ -194,14 +194,14 @@ annotate = function(db, ids, idtype, columns, multiVals = "first", allowable = F
     keytypes(edb)
     columns(edb)
     ids = c("ENSG00000141510", "ENSG00000139687", "ENSG00000236362")
-    annotate(edb, ids = ids, idtype = "GENEID",
+    Annotate(edb, ids = ids, idtype = "GENEID",
              columns = c("SYMBOL","DESCRIPTION","GENEBIOTYPE"))
     
     # Annotate SCE object (human ENSEMBL ids)
     sce = scRNAseq::LawlorPancreasData()
     rowData(sce)
     head(rownames(sce),n=2)
-    res = annotate(edb, ids = rownames(sce), idtype = "GENEID", columns = c("SYMBOL","DESCRIPTION","GENEBIOTYPE"))
+    res = Annotate(edb, ids = rownames(sce), idtype = "GENEID", columns = c("SYMBOL","DESCRIPTION","GENEBIOTYPE"))
     head(res,n=2);dim(res)
     identical(rownames(sce), rownames(res))
     rowData(sce) = res
