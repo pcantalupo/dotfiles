@@ -178,7 +178,13 @@ peek = function(data, r = 5, c = 5) {
 # Use 'allowable' = TRUE to show the values that allowed for the FROM and TO parameters
 Annotate = function(db, ids, idtype, columns, multiVals = "first", allowable = FALSE) 
 {
-
+  require(AnnotationDbi)  # for mapIds()
+  
+  if (missing(db)) stop("The 'db' parameter must be supplied [i.e. org.Hs.eg.db].")
+  if (missing(ids)) stop("The 'ids' parameter must be supplied [i.e. c('TP53')].")
+  if (missing(idtype)) stop("The 'idtype' parameter must be supplied [i.e. c('SYMBOL')].")
+  if (missing(columns)) stop("The 'columns' parameter must be supplied [i.e. c('GENENAME')].")
+  
   if (FALSE) {  # Examples showing the usage of different databases with 'Annotate'
     # Using Org.Hs.eg.db
     keytypes(org.Hs.eg.db)
@@ -214,9 +220,10 @@ Annotate = function(db, ids, idtype, columns, multiVals = "first", allowable = F
     print(columns(db))
     return(invisible(NULL))
   }
-  anno = sapply(columns, function (c) {
+  anno = lapply(columns, function (c) {  # need lapply instead of sapply because of a return value format issue when mapping only one id
     mapIds(db, keys = ids, keytype = idtype, column = c, multiVals=multiVals)}
   )
+  names(anno) = columns
   return(as.data.frame(anno))
     
   # Another method is to Annotate with 'select'. Need to remove duplicates manually with 'match'. This creates data.frame with 4 columns ENSEMBL, SYMBOL, GENENAME, GENETYPE
