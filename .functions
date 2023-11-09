@@ -10,23 +10,26 @@ function showprocesses() {
   echo -e "${GREEN}squeue${NC}" && squeue -u $USER -S S -o "%8i %65j %2t %12l %8M %4C %.R %S" --cluster htc,gpu
 }
 
-# Simple calculator
-function calc() {
-	local result="";
-	result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
-	#                       └─ default (when `--mathlib` is used) is 20
-	#
-	if [[ "$result" == *.* ]]; then
-		# improve the output for decimal numbers
-		printf "$result" |
-		sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
-		    -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
-		    -e 's/0*$//;s/\.$//';  # remove trailing zeros
-	else
-		printf "$result";
-	fi;
-	printf "\n";
-}
+
+# calculator from https://stackoverflow.com/questions/18093871/how-can-i-do-division-with-variables-in-a-linux-shell
+function calc() { awk "BEGIN { print "$*" }"; }
+
+#function calc() {
+#	local result="";
+#	result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
+#	#                       └─ default (when `--mathlib` is used) is 20
+#	#
+#	if [[ "$result" == *.* ]]; then
+#		# improve the output for decimal numbers
+#		printf "$result" |
+#		sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
+#		    -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
+#		    -e 's/0*$//;s/\.$//';  # remove trailing zeros
+#	else
+#		printf "$result";
+#	fi;
+#	printf "\n";
+#}
 
 # Create a new directory and enter it
 function mkd() {
