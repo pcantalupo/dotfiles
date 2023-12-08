@@ -1,4 +1,11 @@
 
+# usethis::use_devtools() - got this idea from the Package Development Cheatsheet
+if (interactive()) {
+  suppressMessages(require(devtools))
+}
+
+
+
 
 search_for_function = function (query, lib) {
   package = paste0("package:", lib)
