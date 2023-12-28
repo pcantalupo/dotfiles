@@ -168,18 +168,6 @@ myRinfo = function() {
 
 }
 
-# peek(mtcars)  # show first 5 rows and 5 cols by default
-# peek(letters) # show first 5 elements of the letters vector
-peek = function(data, r = 5, c = 5) {
-  if (is.null(nrow(data))) {
-    print(head(data, r))
-  } else {
-    if (nrow(data) < r) { r = nrow(data) }
-    if (ncol(data) < c) { c = ncol(data) }
-    print(data[1:r,1:c])
-  }
-}
-
 
 # See examples inside the function for usage
 # Use 'allowable' = TRUE to show the values that allowed for the FROM and TO parameters
