@@ -60,7 +60,7 @@ getHomologousSymbols = function(symbols = c("TP53", "RB1", "FOXP3"), current = "
     message("Creating ensemblmart with 'useMart()'")
     # using uswest because of https://support.bioconductor.org/p/9144682/  # host default is www.ensembl.org
     ensemblmart = useMart(biomart = "ensembl", dataset = current_dataset, 
-                          host="https://uswest.ensembl.org", verbose = TRUE)
+                          host="https://useast.ensembl.org", verbose = TRUE)
   }
   ensemblmart
   saveRDS(ensemblmart, ensemblmartrds)
