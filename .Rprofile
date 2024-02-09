@@ -6,19 +6,6 @@ if (interactive()) {
 
 
 
-set_operations <- function(vec1, vec2) {
-  result <- list(
-    intersectionlen = length(intersect(vec1, vec2)),
-    unionlen = length(union(vec1, vec2)),
-    setdiff_1_to_2 = setdiff(vec1, vec2),
-    setdiff_2_to_1 = setdiff(vec2, vec1)
-  )
-  return(result)
-}
-
-
-
-
 search_for_function = function (query, lib) {
   package = paste0("package:", lib)
   pacman::p_load(char = lib)
