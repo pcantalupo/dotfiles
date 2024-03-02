@@ -1,3 +1,8 @@
+function rmds() {
+  echo -e "\nDeleting .DS_Store recursively\n"
+  find . -name '.DS_Store' -delete
+}
+
 function newfiles() {
   daysago=${1:-0}   # set default to today which is 0
   daysparam="$daysago days ago"
