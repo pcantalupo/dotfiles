@@ -123,18 +123,20 @@ getHomologousSymbols = function(symbols = c("TP53", "RB1", "FOXP3"), current = "
 
 check_version_packages = function() {
   p = sort(c("batchelor", "bluster", "BiocParallel", "celldex", "DelayedArray", "dittoSeq", "dplyr", "DropletUtils", "foobar", "ggplot2", "gridExtra", "Matrix", "monocle3", "nvutils", "PCAtools", "pheatmap", "rlang", "scater", "scran", "sct2", "Seurat", "SeuratObject", "SingleR"))
+  #p = c("nvutils", "PCAtools", "Seurat")
   for (mypackage in p) {
-    v = suppressWarnings(packageDescription(mypackage, fields = "Version"))
-    if (is.na(v)) { v = "NOT INSTALLED" }
+    desc = suppressWarnings(packageDescription(mypackage, fields = c("Version", "GithubSHA1")))
     
-    sha = packageDescription(mypackage, fields = "GithubSHA1")
-    if (!is.na(sha)) {
-      sha = substr(sha, 1, 8)
+    if(!is.list(desc)) {   # desc is NA if package is not installed
+      desc = list(Version = "NOT INSTALLED", GithubSHA1 = NA)
     }
-     
-    toPrint = paste0(mypackage, ": ", v)
-    if(!is.na(sha)) {
-      toPrint = paste0(toPrint, ", ", sha)
+
+    # truncate SHA1 to first 8 characters if it is not NA
+    if (!is.na(desc$GithubSHA1)) { desc$GithubSHA1 = substr(desc$GithubSHA1, 1, 8) }
+
+    toPrint = paste0(mypackage, ": ", desc$Version)
+    if(!is.na(desc$GithubSHA1)) {
+      toPrint = paste0(toPrint, ", SHA1:", desc$GithubSHA1)
     }
     
     print(toPrint)
