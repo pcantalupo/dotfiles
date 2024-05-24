@@ -1,3 +1,7 @@
+function grep_error() {
+  grep -Ei "error|exception|fatal|warning|cannot|can't|uninitialized" "$@"
+}
+
 function find_largest_files() {
   local num_files=${1:-10}  # Default to 10 if no argument is provided
   find . -type f -exec du -ah {} + | sort -rh | head -n "$num_files"
