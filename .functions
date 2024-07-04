@@ -12,13 +12,14 @@ function rmds() {
   find . -name '.DS_Store' -delete
 }
 
-function newfiles() {
-  daysago=${1:-0}   # set default to today which is 0
-  daysparam="$daysago days ago"
-  mydate=$(date -d "$daysparam" '+%Y-%m-%d 00:00:00')
-  echo "Finding newer files than: $mydate" >&2
-  fd -ui -E .DS_Store -E .Rproj.user --type f --change-newer-than "$mydate"
-}
+# Replaced with newfiles.sh in ~/bin
+#function newfiles() {
+#  daysago=${1:-0}   # set default to today which is 0
+#  daysparam="$daysago days ago"
+#  mydate=$(date -d "$daysparam" '+%Y-%m-%d 00:00:00')
+#  echo "Finding newer files than: $mydate" >&2
+#  fd -ui -E .DS_Store -E .Rproj.user --type f --change-newer-than "$mydate"
+#}
 
 function showprocesses() {
   echo -e "\n${PURPLE}Running processes${NC}"
