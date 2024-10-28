@@ -2,6 +2,10 @@
 # my additions
 #
 
+alias jr='joe README.txt'
+alias cr='cat README.txt'
+
+
 HNAME=$(hostname)
 HTC='htc'
 if [[ "$HNAME" == *"$HTC"* ]]; then
