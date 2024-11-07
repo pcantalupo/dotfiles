@@ -4,7 +4,10 @@ function grep_error() {
 
 function find_largest_files() {
   local num_files=${1:-10}  # Default to 10 if no argument is provided
-  find . -type f -exec du -ah {} + | sort -rh | head -n "$num_files"
+#  find . -type f -exec du -ah {} + | sort -rh | head -n "$num_files"  # does not work for OneDrive synced files that do not take up space locally
+
+  find . -type f -printf "%s %p\n" | sort -rn | head -n "$num_files" | \
+       numfmt --to=iec-i --suffix=B   # numfmt will choose appropriate unit (MB, GB, etc...)
 }
 
 function rmds() {
