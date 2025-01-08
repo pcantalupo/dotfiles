@@ -1,3 +1,23 @@
+function qcd() {
+  case "$1" in
+    dasilva)
+      cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/dasilva_snRNA-snATACseq"
+      ;;
+    sachdev)
+      cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/sachdev_visium"
+      ;;
+    soong)
+      cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/soong_nanostring"
+      ;;
+    src)
+      cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/src"
+      ;;
+  esac
+  pwd
+}
+complete -W "dasilva sachdev soong src" qcd
+
+
 function grep_error() {
   grep -Ei "error|exception|fatal|warning|cannot|can't|uninitialized" "$@"
 }
