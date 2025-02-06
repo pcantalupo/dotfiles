@@ -21,7 +21,7 @@ function qcd() {
   esac
   pwd
 }
-complete -W "dasilva sachdev soong src" qcd
+complete -W "dasilva sachdev soong src rnaseq sct" qcd
 
 
 function grep_error() {
