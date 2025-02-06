@@ -12,6 +12,12 @@ function qcd() {
     src)
       cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/src"
       ;;
+    rnaseq)
+      cd "$HOME/OneDrive - University of Pittsburgh/projects/RNAseq"
+      ;;
+    sct)
+      cd "$HOME/OneDrive - University of Pittsburgh/projects/SCT"
+      ;;
   esac
   pwd
 }
