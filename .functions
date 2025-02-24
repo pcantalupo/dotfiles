@@ -1,7 +1,13 @@
 function qcd() {
   case "$1" in
+    uclab_onedrive)
+      cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul"
+      ;;
     dasilva)
       cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/dasilva_snRNA-snATACseq"
+      ;;
+    ravida)
+      cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/ravida_scrnaseq"
       ;;
     sachdev)
       cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/sachdev_visium"
@@ -21,7 +27,7 @@ function qcd() {
   esac
   pwd
 }
-complete -W "dasilva sachdev soong src rnaseq sct" qcd
+complete -W "uclab_onedrive dasilva ravida sachdev soong src rnaseq sct" qcd
 
 
 function grep_error() {
