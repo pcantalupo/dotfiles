@@ -4,7 +4,7 @@ function qcd() {
       cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul"
       ;;
     dasilva)
-      cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/dasilva_snRNA-snATACseq"
+      cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/dasilva_multiome"
       ;;
     ravida)
       cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/ravida_scrnaseq"
