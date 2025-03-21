@@ -9,6 +9,9 @@ function qcd() {
     ravida)
       cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/ravida_scrnaseq"
       ;;
+    jingcheng)
+      cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/jingcheng_DLBCL"
+      ;;
     sachdev)
       cd "$HOME/OneDrive - University of Pittsburgh/DBMI_Genomics_Analysis_Chandran/Paul/sachdev_visium"
       ;;
@@ -27,7 +30,7 @@ function qcd() {
   esac
   pwd
 }
-complete -W "uclab_onedrive dasilva ravida sachdev soong src rnaseq sct" qcd
+complete -W "uclab_onedrive dasilva jingcheng ravida sachdev soong src rnaseq sct" qcd
 
 
 function grep_error() {
