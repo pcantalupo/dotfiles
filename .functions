@@ -37,7 +37,7 @@ complete -W "uclab_onedrive dasilva jingcheng anish_dlbcl ravida sachdev soong s
 
 
 function grep_error() {
-  grep -Ei "error|exception|fatal|warning|cannot|can't|uninitialized" "$@"
+  grep -Ei "error|exception|fatal|warning|cannot|can't|uninitialized|failed" "$@"
 }
 
 function find_largest_files() {
