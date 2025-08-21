@@ -40,6 +40,20 @@ function grep_error() {
   grep -Ei "error|exception|fatal|warning|cannot|can't|uninitialized|failed|Missing|aborted" "$@"
 }
 
+
+# View Excel file in fixed width columns
+# Usage: in2csvlook target_gms_segment_metadata.xlsx | less
+function in2csvlook() {  
+  in2csv --no-inference --snifflimit 0 "$@" | csvlook --no-inference --snifflimit 0;
+}
+
+# View TSV file in fixed width columns
+# Usage: tsvlook TSVFILE | less
+function tsvlook() {
+  csvlook --tabs --no-inference --snifflimit 0' "$@";
+}
+
+
 function find_largest_files() {
   local num_files=${1:-10}  # Default to 10 if no argument is provided
 #  find . -type f -exec du -ah {} + | sort -rh | head -n "$num_files"  # does not work for OneDrive synced files that do not take up space locally
