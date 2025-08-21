@@ -50,7 +50,7 @@ function in2csvlook() {
 # View TSV file in fixed width columns
 # Usage: tsvlook TSVFILE | less
 function tsvlook() {
-  csvlook --tabs --no-inference --snifflimit 0' "$@";
+  csvlook --tabs --no-inference --snifflimit 0 "$@";
 }
 
 
