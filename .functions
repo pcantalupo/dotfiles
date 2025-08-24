@@ -44,13 +44,13 @@ function grep_error() {
 # View Excel file in fixed width columns
 # Usage: in2csvlook target_gms_segment_metadata.xlsx | less
 function in2csvlook() {  
-  in2csv --no-inference --snifflimit 0 "$@" | csvlook --no-inference --snifflimit 0;
+  in2csv --no-inference --snifflimit 0 "$@" | csvlook --no-inference --snifflimit 0 --blanks;
 }
 
 # View TSV file in fixed width columns
 # Usage: tsvlook TSVFILE | less
 function tsvlook() {
-  csvlook --tabs --no-inference --snifflimit 0 "$@";
+  csvlook --tabs --no-inference --snifflimit 0 --blanks "$@";
 }
 
 
