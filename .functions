@@ -54,6 +54,21 @@ function tsvlook() {
 }
 
 
+# Ripgrep
+# -uu   - 1) search ignore files like .gitignore and 2) search hidden files and directories
+# -s    - make case sensitive like the grep default
+# -t r  - search R files
+function rg() { command rg -uu -s "$@"; }
+function rgr() { command rg -uu -s -t r "$@"; }
+function rgh () {
+  if type -P rg &> /dev/null; then
+    rg "$@" ~/.bash_eternal_history    # -s is not required since it is defined in 'function rg()'
+  else
+    grep "$@" ~/.bash_eternal_history
+  fi
+}
+
+
 function find_largest_files() {
   local num_files=${1:-10}  # Default to 10 if no argument is provided
 #  find . -type f -exec du -ah {} + | sort -rh | head -n "$num_files"  # does not work for OneDrive synced files that do not take up space locally
