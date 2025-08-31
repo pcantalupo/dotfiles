@@ -24,7 +24,6 @@ fi
 # open like with mac
 if [[ "$HNAME" == "sirius" ]]; then
   alias open='cygstart'
-  alias pulse="open /cygdrive/c/Program\ Files\ \(x86\)/Common\ Files/Pulse\ Secure/JamUI/Pulse.exe -show"
 fi
 
 # safe delete copy and move
