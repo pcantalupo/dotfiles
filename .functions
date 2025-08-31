@@ -68,6 +68,13 @@ function rgh () {
   fi
 }
 
+# fd
+# by default fd is like find which is case sensitive (add -i to mimic find -iname)
+# -u unrestricted search (--no-ignore, --hidden)
+function fd()  { command fd -u -E .DS_Store -E .Rproj.user "$@"; }
+function fdr() { command fd -u -E .DS_Store -E .Rproj.user -e R -e Rmd "$@"; }
+
+
 
 function find_largest_files() {
   local num_files=${1:-10}  # Default to 10 if no argument is provided
