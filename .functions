@@ -75,6 +75,20 @@ function fd()  { command fd -u -E .DS_Store -E .Rproj.user "$@"; }
 function fdr() { command fd -u -E .DS_Store -E .Rproj.user -e R -e Rmd "$@"; }
 
 
+function emptytrash() {
+  echo "Emptying user trash..."
+  rm -rfv ~/.Trash/*
+
+  echo -e "\nClearing quarantine events..."
+  sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent' 2>/dev/null
+
+  echo
+
+  # More aggressive options (https://mths.be/bum)
+  # sudo rm -rfv /Volumes/*/.Trashes
+  # sudo rm -rfv /private/var/log/asl/*.asl   # legacy log files
+}
+
 
 function find_largest_files() {
   local num_files=${1:-10}  # Default to 10 if no argument is provided
