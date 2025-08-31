@@ -181,8 +181,8 @@ function mkd() {
 }
 
 # Syntax-highlight JSON strings or files
-# Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
-function json() {
+# example: curl -s "https://api.github.com/users/octocat" | json_colorize
+function json_colorize() {
 	if [ -t 0 ]; then # argument
 		python3 -mjson.tool <<< "$*" | pygmentize -l javascript;
 	else # pipe
