@@ -103,14 +103,6 @@ function rmds() {
   find . -name '.DS_Store' -delete
 }
 
-# Replaced with newfiles.sh in ~/bin
-#function newfiles() {
-#  daysago=${1:-0}   # set default to today which is 0
-#  daysparam="$daysago days ago"
-#  mydate=$(date -d "$daysparam" '+%Y-%m-%d 00:00:00')
-#  echo "Finding newer files than: $mydate" >&2
-#  fd -ui -E .DS_Store -E .Rproj.user --type f --change-newer-than "$mydate"
-#}
 
 function showprocesses() {
   echo -e "\n${PURPLE}Running processes${NC}"
@@ -131,10 +123,6 @@ function server() {
     python3 -m http.server "$port" --bind 127.0.0.1;
 }
 
-
-
-
-########### Git functions
 # Use Git’s colored diff when available
 hash git &>/dev/null;
 if [ $? -eq 0 ]; then
@@ -148,11 +136,8 @@ fi;
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 function tre() {
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+	tree -aC -I '.git|.Rproj.user' --dirsfirst "$@" | less -FRNX;
 }
-########### Git functions
-
-
 
 
 # `v` with no arguments opens the current directory in VSCode, otherwise opens the
